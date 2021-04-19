@@ -116,7 +116,7 @@ func main() {
 				// sequence identifiers. Append the start and end positions
 				// of contig sequence to old identifiers and use them as
 				// FASTA headers for the fragments.
-				curr.Desc = fmt.Sprintf("%v_%v-%v", next.Name(), startPos, endPos)
+				curr.ID = fmt.Sprintf("%v_%v-%v", next.Name(), startPos, endPos)
 				if _, err = w.Write(curr); err != nil {
 					fmt.Fprintf(os.Stderr, "failed to write window-sized fragment: %v", err)
 				}
@@ -126,7 +126,7 @@ func main() {
 			if err != nil {
 				panic(err)
 			}
-			curr.Desc = fmt.Sprintf("%v_%v-%v", next.Name(), endPos, endPos+(*window)+remainder)
+			curr.ID = fmt.Sprintf("%v_%v-%v", next.Name(), endPos, endPos+(*window)+remainder)
 			if _, err = w.Write(curr); err != nil {
 				fmt.Fprintf(os.Stderr, "failed to write remainder fragment: %v", err)
 			}
